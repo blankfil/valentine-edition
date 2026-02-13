@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spura Times - Valentine Edition</title>
+  <!-- Google Fonts for elegant newspaper look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Great+Vibes&family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="page">
+    <!-- Masthead / Newspaper header -->
+    <header class="masthead">
+      <div class="masthead-top">
+        <div class="masthead-date">
+          <span>Saturday</span>
+          <span>14 Feb</span>
+        </div>
+        <div class="masthead-special">SPECIAL EDITION</div>
+        <div class="masthead-date">
+          <span>Saturday</span>
+          <span>14 Feb</span>
+        </div>
+      </div>
+      <div class="masthead-title">Serela Times</div>
+    </header>
+
+    <hr class="divider main-divider">
+
+    <!-- Big headline section -->
+    <section class="hero">
+      <h1 class="hero-main">WILL YOU BE MY</h1>
+      <h2 class="hero-script">Valentine?</h2>
+    </section>
+
+    <hr class="divider thin-divider">
+
+    <!-- Two-column body: letter + photo -->
+    <main class="content">
+      <section class="letter">
+        <p class="salutation">Dear Achieng,</p>
+        <p>There are no words in the length &amp; width of the English vocabulary that can help me put what I feel in my heart on paper besides what I always say - that I plan &amp; hope to spend 10 lifetimes learning how to love you the way you deserve.</p>
+        <p>With every single lifetime a lesson towards the love you deserve, I will intentionally do this for as long as God allows me. This is what completes me.</p>
+        <p>Maybe this is what the definition of soulmates is, not someone who completes you but someone who moves you to complete yourself and for this, I’m forever grateful.</p>
+      </section>
+
+      <aside class="photo-column">
+        <div class="photo-frame">
+          <img src="images/IMG-20260109-WA0000.jpg" alt="Spura portrait">
+        </div>
+        <div class="photo-handle">@Manyara</div>
+        <!-- Soft romantic background music, starts automatically -->
+        <audio id="bg-music" class="bg-music" autoplay loop>
+          <source src="audio/romantic.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </aside>
+    </main>
+
+    <hr class="divider main-divider">
+
+    <!-- Bottom question strip with YES / NO -->
+    <section class="bottom-callout">
+      <p class="bottom-text">
+        I say all this to ask you one question for the third time
+      </p>
+      <div class="answer-buttons">
+        <button id="yes-btn" class="answer-button yes-button">
+          YES
+        </button>
+        <button id="no-btn" class="answer-button no-button">
+          NO
+        </button>
+      </div>
+    </section>
+
+    <!-- Rose popup for the YES answer -->
+    <div id="rose-popup" class="rose-popup">
+      <div class="rose-popup-inner">
+        <button id="close-rose-popup" class="rose-close" aria-label="Close">
+          &times;
+        </button>
+        <h2 class="rose-title">Forever my Valentine 🌹</h2>
+        <div class="rose-gallery">
+          <img src="images/rose_1.jpg" alt="Red roses">
+          <img src="images/rose_2.jpg" alt="Bouquet of roses">
+          <img src="images/rose_1.jpg" alt="Romantic roses">
+        </div>
+        <p class="rose-message">
+          Thank you for saying yes (again and again). Here's a bouquet of real roses, just for you. 😘
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSparkles() {
+      for (let i = 0; i < 10; i++) {
+        let sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerHTML = "😍😘";
+        sparkle.style.left = (50 + (Math.random() * 200 - 100)) + "px";
+        sparkle.style.top = "80%";
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1500);
+      }
+    }
+
+    function createFlyingRoses() {
+      const directions = ["top", "bottom", "left", "right"];
+
+      for (let i = 0; i < 16; i++) {
+        const rose = document.createElement("div");
+        rose.className = "flying-rose";
+        rose.textContent = "🌹";
+
+        const direction = directions[Math.floor(Math.random() * directions.length)];
+        rose.classList.add(`from-${direction}`);
+
+        // Randomize the starting position along the edge
+        if (direction === "top" || direction === "bottom") {
+          rose.style.left = Math.random() * 100 + "vw";
+        } else {
+          rose.style.top = Math.random() * 100 + "vh";
+        }
+
+        document.body.appendChild(rose);
+
+        // Clean up after the animation is done
+        setTimeout(() => {
+          rose.remove();
+        }, 3000);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const yesBtn = document.getElementById("yes-btn");
+      const noBtn = document.getElementById("no-btn");
+      const rosePopup = document.getElementById("rose-popup");
+      const closeRosePopup = document.getElementById("close-rose-popup");
+      const bgMusic = document.getElementById("bg-music");
+
+      if (bgMusic) {
+        bgMusic.volume = 0.5;
+        const playPromise = bgMusic.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay might be blocked by the browser; user can start music manually.
+          });
+        }
+      }
+
+      if (yesBtn && rosePopup) {
+        yesBtn.addEventListener("click", function () {
+          showSparkles();
+          createFlyingRoses();
+          rosePopup.classList.add("visible");
+        });
+      }
+
+      if (closeRosePopup && rosePopup) {
+        closeRosePopup.addEventListener("click", function () {
+          rosePopup.classList.remove("visible");
+        });
+      }
+
+      if (rosePopup) {
+        rosePopup.addEventListener("click", function (event) {
+          if (event.target === rosePopup) {
+            rosePopup.classList.remove("visible");
+          }
+        });
+      }
+
+      if (noBtn) {
+        const container = noBtn.parentElement;
+        let noBtnInterval = null;
+
+        function moveNoButtonFast() {
+          if (!container) return;
+
+          const containerRect = container.getBoundingClientRect();
+          const buttonRect = noBtn.getBoundingClientRect();
+
+          const maxX = containerRect.width - buttonRect.width;
+          const maxY = containerRect.height - buttonRect.height;
+
+          const randomX = Math.random() * maxX - maxX / 2;
+          const randomY = Math.random() * maxY - maxY / 2;
+
+          noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        if (container) {
+          container.addEventListener("mouseenter", function () {
+            moveNoButtonFast();
+
+            if (!noBtnInterval) {
+              noBtnInterval = setInterval(moveNoButtonFast, 220);
+            }
+          });
+
+          container.addEventListener("mouseleave", function () {
+            if (noBtnInterval) {
+              clearInterval(noBtnInterval);
+              noBtnInterval = null;
+            }
+
+            noBtn.style.transform = "translate(0, 0)";
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
