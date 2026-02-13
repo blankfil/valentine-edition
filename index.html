@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Spura Times - Valentine Edition</title>
+  <title>Serela Times - Valentine Edition</title>
   <!-- Google Fonts for elegant newspaper look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +49,7 @@
 
       <aside class="photo-column">
         <div class="photo-frame">
-          <img src="images/IMG-20260109-WA0000.jpg" alt="Spura portrait">
+          <img src="images/IMG-20260109-WA0000.jpg" alt="Serela portrait">
         </div>
         <div class="photo-handle">@Manyara</div>
         <!-- Soft romantic background music, starts automatically -->
@@ -70,9 +70,6 @@
       <div class="answer-buttons">
         <button id="yes-btn" class="answer-button yes-button">
           YES
-        </button>
-        <button id="no-btn" class="answer-button no-button">
-          NO
         </button>
       </div>
     </section>
@@ -113,9 +110,10 @@
       const directions = ["top", "bottom", "left", "right"];
 
       for (let i = 0; i < 16; i++) {
-        const rose = document.createElement("div");
+        const rose = document.createElement("img");
         rose.className = "flying-rose";
-        rose.textContent = "🌹";
+        rose.src = "images/rose_1.jpg";
+        rose.alt = "Flying rose";
 
         const direction = directions[Math.floor(Math.random() * directions.length)];
         rose.classList.add(`from-${direction}`);

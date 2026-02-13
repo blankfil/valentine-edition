@@ -88,6 +88,7 @@ body {
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
   font-weight: 400;
+  color: rgb(207, 9, 9);
 }
 
 /* Two-column letter + photo */
@@ -120,7 +121,7 @@ body {
 .photo-frame {
   width: 220px;
   aspect-ratio: 1 / 1;
-  border-radius: 50%;
+  border-radius: 60%;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -131,7 +132,7 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-  border-radius: 50%;
+  border-radius: 60%;
   object-fit: contain;
 }
 
@@ -193,10 +194,11 @@ body {
   }
 }
 
-/* Flying roses animation for the "YES" answer */
 .flying-rose {
-  position: fixed;
-  font-size: 3rem;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  /* object-fit: contain; */
   pointer-events: none;
   z-index: 1100;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
@@ -204,22 +206,22 @@ body {
 
 .flying-rose.from-top {
   top: -60px;
-  animation: roseFromTop 2.4s ease-out forwards;
+  animation: roseFromTop 3.4s ease-out forwards;
 }
 
 .flying-rose.from-bottom {
   bottom: -60px;
-  animation: roseFromBottom 2.6s ease-out forwards;
+  animation: roseFromBottom 3.6s ease-out forwards;
 }
 
 .flying-rose.from-left {
   left: -60px;
-  animation: roseFromLeft 2.5s ease-out forwards;
+  animation: roseFromLeft 3.5s ease-out forwards;
 }
 
 .flying-rose.from-right {
   right: -60px;
-  animation: roseFromRight 2.7s ease-out forwards;
+  animation: roseFromRight 3.7s ease-out forwards;
 }
 
 @keyframes roseFromTop {
@@ -286,7 +288,7 @@ body {
   }
 }
 
-/* YES / NO buttons */
+
 .answer-buttons {
   display: flex;
   justify-content: center;
@@ -311,20 +313,17 @@ body {
 }
 
 .yes-button {
-  background: #201d1b;
+  background: #18420d;
   color: #f9f5ee;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .yes-button:hover {
-  background: #3c3430;
+  background: #ff1100;
   transform: translateY(-1px);
 }
 
-.no-button {
-  position: relative;
-  /* Make its dodging movement feel very fast */
-  transition: transform 0.08s linear, background 0.2s ease, color 0.2s ease;
-}
+
 
 /* Rose popup styling */
 .rose-popup {
